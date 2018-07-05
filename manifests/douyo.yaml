@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: douyo
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: drone
+  namespace: douyo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: douyo
+  name: drone
+rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: douyo
+  name: drone
+subjects:
+- kind: ServiceAccount
+  name: drone
+  namespace: douyo
+roleRef:
+  kind: Role
+  name: drone
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: douyo
+  name: douyo
+  namespace: douyo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: douyo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: douyo
+    spec:
+      containers:
+      - image: kinadu/douyo
+        imagePullPolicy: Always
+        name: douyo
+        volumeMounts:
+        - mountPath: /app/data
+          name: data
+      - image: kinadu/douyo
+        imagePullPolicy: Always
+        name: douyo-bat
+        command: ["/app/bat/digzon.sh"]
+        volumeMounts:
+        - mountPath: /app/data
+          name: data
+        env:
+        - name: TWITTER_CONSUMER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: twitter_consumer_key
+        - name: TWITTER_CONSUMER_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: twitter_consumer_secret
+        - name: TWITTER_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: twitter_access_key
+        - name: TWITTER_ACCESS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: twitter_access_secret
+        - name: AMAZON_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: amazon_secret_key
+        - name: AMAZON_SUBSCRIPTION_ID
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: amazon_subscription_id
+        - name: AMAZON_ASSOCIATE_TAG
+          valueFrom:
+            secretKeyRef:
+              name: douyo
+              key: amazon_associate_tag
+        - name: MECAB_PATH
+          value: "/usr/lib/x86_64-linux-gnu/libmecab.so.2"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: nfs-claim-douyo
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: douyo
+  name: douyo
+  namespace: douyo
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: douyo
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: douyo
+  namespace: douyo
+spec:
+  rules:
+  - host: douyo.inajob.tk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: douyo
+          servicePort: 80
+

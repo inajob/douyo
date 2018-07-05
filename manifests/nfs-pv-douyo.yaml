@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs004
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow
+  mountOptions:
+    - hard
+  nfs:
+    path: /var/data/004
+    server: 45.76.209.244
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-douyo
+  namespace: douyo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: slow
+

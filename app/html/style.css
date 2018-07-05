@@ -1,0 +1,165 @@
+body{
+   background-color:#636;
+   
+			-webkit-background-size: 50px 50px;
+			-moz-background-size: 50px 50px;
+			background-size: 50px 50px; /* Controls the size of the stripes */
+			
+			-moz-box-shadow: 1px 1px 8px gray;
+			-webkit-box-shadow: 1px 1px 8px gray;
+			box-shadow: 1px 1px 8px gray;
+
+			background-color: #aaf;
+			background-image: -webkit-gradient(linear, 0 100%, 100% 0,
+									color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+									color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+									color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+			 						to(transparent));
+			background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+}
+.page-header{
+background-color:white;
+}
+h1{
+
+}
+h2{
+
+}
+h2.center{
+	text-align:center;
+}
+div.hero-desc{
+    background-image: url("douyo.png");
+    background-repeat:no-repeat;
+    background-position:right top;
+    /*border:solid 1px;*/
+    background-color:#ddf;
+ 
+}
+div.stage{
+    margin:1em;
+    padding:1em;
+    border:dashed 1px;
+}
+
+.emph{
+    color:red;
+}
+.well, .hero-unit{
+ 	-webkit-box-shadow: 0 10px 6px -6px #777;
+	   -moz-box-shadow: 0 10px 6px -6px #777;
+	        box-shadow: 0 10px 6px -6px #777; 
+}
+
+a{
+    color:black;
+    text-decoration:underline;
+}
+a:hover{
+    color:white;
+    background-color:black;
+}
+
+div.hatebu{
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+/*   index.html */
+div.record{
+    padding:0.2em;;
+    /*border:solid 1px;*/
+    /*background-color:#ffffdd;*/
+    /*
+    margin:1em;
+    padding:0.1em;
+    background-image: url("back.png");
+    */
+    /*border:solid 1px;*/
+}
+div.img{
+    /*width:100px;*/
+    height:160px;
+    background-color:#aaaaaa;
+    margin:1em;
+    
+}
+div.img img{
+  border:solid 1px;
+}
+div.title{
+    font-size:large;
+}
+div.tags{
+
+}
+div.template{
+    display:none;
+}
+div.box{
+    background-color:white;
+    width:50%;
+    border:solid 1px;
+    font-size:x-small;
+    margin:1em;
+    padding:1em;
+}
+div.other{
+	text-align:right;
+}
+
+/* page.html */
+div.single{
+    padding:3em;
+    margin:2em;
+}
+div.img-t{
+    height:160px;
+}
+div.img-t img{
+    border:solid 1px;
+}
+div.tags{
+   line-height:2em;
+}
+div.tags-t{
+    background-color:white;
+    border:dotted;
+    /*width:70%;*/
+    margin:1em;
+    padding:1em;
+    line-height:2em;
+}
+span.tag{
+margin:0.3em;
+font-size:1.2em;
+/*
+    border:solid gray;
+    border-width:1px 1px 1px 10px;
+    padding:0.2em;
+    margin:0.2em;
+        background-color:white;
+	*/
+}
+
+
+/* utility */
+.clear{
+    clear:both;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Douyo?</title>
+<link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="style.css?1" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="prototype-1.6.0.3.js"></script>
+<script type="text/javascript" src="douyo.js"></script>
+
+
+<!--<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>-->
+<script type="text/javascript">
+Hatena.Star.EntryLoader.headerTagAndClassName = ["h3","star"];
+/*
+Hatena.Star.SiteConfig = {
+  entryNodes: {
+    'div.section': {
+      uri: 'h3 a',
+      title: 'h3',
+      container: 'h3'
+    }
+  }
+};
+*/
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3635234-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+</head>
+<body onload="init()">
+
+<div class="navbar">
+<div class="navbar-inner">
+<h1><a href="index.html">Douyo?</a><small>どぅよ?</small></h1>
+
+<div class="hatebu">
+  <script type="text/javascript">
+  document.write('<img src="http://b.hatena.ne.jp/entry/image/small/'+ document.location +'" height="11" />')
+  document.write('<a href="http://b.hatena.ne.jp/entry/'+ document.location +'">')
+  document.write('<img src="http://d.hatena.ne.jp/images/b_entry.gif" width="16" height="12" style="border: none;" '+
+         'alt="このエントリーを含むはてなブックマーク" title="このエントリーを含むはてなブックマーク" />はてブする?')
+  document.write('</a>');
+  </script>
+</div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="hero-desc hero-unit">
+<h2>これはなに？</h2>
+どぅよ？は テキトーなモノを垂れ流すサービスです。<br />
+わかりやすい?タグを添付してTwitter経由で知らせてくれます。
+<div>
+<a href="http://twitter.com/douyo">@douyo</a>
+<a href="https://twitter.com/douyo" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-size="large">@douyoさんをフォロー</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+をフォローしておくと あなたに向けたおすすめをしてくれるかもしれません
+</div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="well span6">
+<h2>使い方</h2>
+<div class="desc">
+<span class="emph">@douyo</span>付きで発言すると。douyoが拾って次回の発言に反映されるようにしてみました。
+</div>
+</div>
+
+<div class="well span6">
+  <h3>関連URL</h3>
+  <dl>
+    <dt>作者HP</dt><dd><a href="http://d.hatena.ne.jp/inajob/">INAの日記</a></dd>
+    <dt>つくったひとTwitter</dt><dd><a href="http://twitter.com/ina_ani">@ina_ani</a></dd>
+  </dl>
+  <ul>
+    <li><a href="http://inajob.no-ip.org:10080/tsukutter/index.html">つくったー</a></li>
+    <li><a href="http://inajob.no-ip.org:10080/tnd/tnd.html">つんどいったー</a></li>
+    <li><a href="http://twitter.com/Mai_iaM">人工無脳Mai</a></li>
+  </ul>
+</div>
+</div>
+</div>
+
+<h2>過去のどぅよ？</h2>
+<div class="contents" id="contents">
+</div>
+
+
+<div class="template">
+  <div class="well well-small record" id="record_tmpl">
+    <table><tr><td>
+    <div class="img">
+    <a id="image_a_tmpl">
+	<img id="image_tmpl" border="0" />
+    </a>
+    </div>
+    </td><td>
+    <div class="title" id="title_tmpl"></div>
+    <div class="tags" id="tags_tmpl"></div>
+    <div class="other" id="other_tmpl"></div>
+    </td></tr></table>
+  </div>
+</div>
+</div>
+</body>
+</html>
