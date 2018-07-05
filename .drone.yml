@@ -1,0 +1,16 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: kinadu/douyo
+    tags: latest
+    secrets: [ docker_username, docker_password ]
+  kubernetes:
+    image: gcr.io/google_containers/hyperkube-amd64:v1.9.2
+    commands:
+      - export UPDATED_AT=`date +%s`
+      - export CA_CERT=`mktemp`
+      - echo $KUBE_CACERT|base64 -d > $CA_CERT
+      - echo $KUBE_SERVER
+      - kubectl --server $KUBE_SERVER --token $KUBE_TOKEN --certificate-authority $CA_CERT patch deployment.apps tsukutter -n tsukutter -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"force-update.inajob-tk/updated-at\":\"$UPDATED_AT\"}}}}}"
+    secrets: [ kube_server, kube_token, kube_cacert ]
+
