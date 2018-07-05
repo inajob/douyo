@@ -39,7 +39,7 @@ postfix = " ";
 
 settings={"last_id":-1,"last_timer":0};
 
-if(os.path.exists("id_store.txt")):
+if(os.path.exists(basePath + "id_store.txt")):
     f = open(basePath + "id_store.txt","r")
     settings = simplejson.loads(f.read());
     f.close();
