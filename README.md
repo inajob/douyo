@@ -1,1 +1,1 @@
-http://douyo.inajob.tk/
+http://douyo.inajob.ml/

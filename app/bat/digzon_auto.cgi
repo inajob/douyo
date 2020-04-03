@@ -6,7 +6,7 @@ import re,os,time,sys,glob
 import time,datetime
 import codecs,random
 
-import amazon_search
+import amazon_search2
 import analyzeTwit
 import booklog
 import simplejson
@@ -104,7 +104,7 @@ f.close();
 
 for x in keys:
     print "try...",x
-    rep=amazon_search.send_query(x);
+    rep=amazon_search2.send_query(x);
     if len(rep)==0:
         print "not hit amazon"
         continue;
@@ -113,16 +113,16 @@ for x in keys:
     wvect=[[0,-1]]
     for i,x in enumerate(rep):
         wvect.append([1,i])
-        if len(x["Review"])!=0:
-            revc = len(x["Review"])
-            tmp=0;
-            for y in x["Review"]:
-                tmp += int(y["HelpfulVotes"])
-            tail = wvect[-1][0]
-            wvect.append([1.0*tmp/revc+tail,i])
-            #if max_rev < 1.0*tmp/revc:
-            #    max_rev=revc;
-            #    max_ind=i;
+    #    if len(x["Review"])!=0:
+    #        revc = len(x["Review"])
+    #        tmp=0;
+    #        for y in x["Review"]:
+    #            tmp += int(y["HelpfulVotes"])
+    #        tail = wvect[-1][0]
+    #        wvect.append([1.0*tmp/revc+tail,i])
+    #        #if max_rev < 1.0*tmp/revc:
+    #        #    max_rev=revc;
+    #        #    max_ind=i;
     if(len(wvect)==1):
         err_page("not found");
         continue;
@@ -136,12 +136,12 @@ for x in keys:
             break;
     rep = rep[max_ind]
     cl=[]
-    title = rep["Title"]
-    asin = rep["ASIN"]
+    title = rep["title"]
+    asin = rep["asin"]
 
     strl=[];
-    for x in rep["Review"]:
-        strl.append(amazon_search.strip_tags(x["Content"]));
+    #for x in rep["Review"]:
+    #    strl.append(amazon_search.strip_tags(x["Content"]));
     for x in booklog.send_query(asin):
         strl.append(booklog.strip_tags(x));
     meishil = []
@@ -194,7 +194,7 @@ for x in analyzeTwit.convert(meishil):
 #else:
 #    dig = dig +u" → "+ title
 
-url = "http://douyo.inajob.tk/data/"+asin+".xml"
+url = "http://douyo.inajob.ml/data/"+asin+".xml"
 print dig +postfix + url,len(dig)
 update_setting(settings["last_id"],time.time());
 #sys.exit(0)
@@ -213,7 +213,7 @@ s = """<?xml version="1.0" encoding="UTF-8"?>
        %s
     </tags>
   </data>
-</douyo>"""  % (datetime.datetime.now().isoformat(),cgi.escape(title).replace("\"",""),rep["ImageURL"],rep["URL"].replace("&","&amp;"),tags)
+</douyo>"""  % (datetime.datetime.now().isoformat(),cgi.escape(title).replace("\"",""),rep["mimage"][0],rep["link"][0].replace("&","&amp;"),tags)
 
 print s
 
